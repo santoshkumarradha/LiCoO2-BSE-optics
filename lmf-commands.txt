@@ -1,0 +1,10 @@
+mpirun -np 12 lmf temp|tee out
+mpirun -n 24 lmf -vnk1=10 -vnk2=10 -vnk3=10 --quit=rho '--pdos~mode=1' temp
+mpirun -n 1 lmdos -vnk1=10 -vnk2=10 -vnk3=10 --dos:npts=2001:window=-1,1.5 '--pdos~mode=1' temp
+echo 10 3 -5,20 | mpirun -n 1 pldos -ef=0 -esclxy=13.6 -fplot -lst='42,47,52,57,62,67,72,77' dos.temp
+
+
+
+#GW
+echo -1|mpirun -n 1 lmfgwd temp
+lmgwsc --mpi=10,24 --sym --metal --tol=1e-5 --getsigp --maxit=4 temp|tee out.lmgwsc

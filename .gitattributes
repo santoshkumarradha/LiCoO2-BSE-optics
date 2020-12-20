@@ -1,0 +1,3 @@
+*.ipynb linguist-detectable=false
+*.py linguist-detectable=true
+*.F linguist-detectable=true
